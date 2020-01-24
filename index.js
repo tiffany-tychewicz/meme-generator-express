@@ -1,23 +1,10 @@
 const express = require('express');
-var cors = require('cors')
-const path = require('path');
+const cors = require('cors')
+const memeRoutes = require('./routes/memes')
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, 'client/build')));
-
-
-app.get('/api/memes', (req,res) => {
-    res.send('Here are all of your memes!');
-});
-
-app.post('/api/memes', (req,res) => {
-    res.send("your meme has been created!");
-})
-
-app.put('/api/memes/:id', (req,res) => {
-    res.send("your meme has been updated!");
-})
+app.use('/api/memes', memeRoutes)
 
 const port = process.env.PORT || 3001;
 app.listen(port);
